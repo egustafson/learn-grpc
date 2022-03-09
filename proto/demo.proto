@@ -1,0 +1,26 @@
+syntax = "proto3";
+package workshop;
+
+option go_package = "github.com/egustafson/learn-grpc/go-server/pb";  // <-- caveats
+
+service WorkshopService {
+  rpc GetRandom(RandomRequest) returns (RandomResponse) {}
+  rpc Clock(ClockRequest) returns (stream ClockResponse) {}
+}
+
+message RandomRequest {
+  int min = 1;
+  int max = 2;
+}
+
+message RandomResponse {
+  float value = 1;
+}
+
+message ClockRequest {
+  string timezone = 1;
+}
+
+message ClockResponse {
+  string timestring = 1;
+}
